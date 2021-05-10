@@ -48,7 +48,12 @@ def translate():
             note = match.string[0:_pos]
             #turn b into - to match music21 notation
             note = re.sub("b", "-", note)
+            #check for dotted notes
             duration = match.string[_pos + 1:]
+            dot = re.search("\.", duration)
+            if (dot != None):
+                duration = duration[0:dot.span()[0] + 1] #remove anything after dot
+                print(duration)
             #Insert to semArray
             semArray.append([note, duration])
         #REST
@@ -70,30 +75,38 @@ def translate():
             primitive = m.note.Note(p[0])
         #Define duration
         duration = p[1]
-        if (p[1] in ["whole", "half", "quarter", "eighth", "sixteenth"]):
+        if (p[1] in ["whole", "half", "quarter", "eighth", "sixteenth", "whole.", "half.", "quarter.", "eighth.", "sixteenth."]):
+            finalDuration = 0
+            hasDot = False
+            dot = re.search("\.", duration)
+            if (dot != None):
+                duration = duration[0:dot.span()[0]] #remove dot
+                hasDot = True
+            #set base value
             if (duration == "whole"):
-                duration = 4.0
+                finalDuration = 4.0
             elif (duration == "half"):
-                duration = 2.0
+                finalDuration = 2.0
             elif (duration == "quarter"):
-                duration = 1.0
+                finalDuration = 1.0
             elif (duration == "eighth"):
-                duration = 0.5
+                finalDuration = 0.5
             elif (duration == "sixteenth"):
-                duration = 0.25
+                finalDuration = 0.25
             else:
                 print("Duration not supported")
-                duration = 1.0
-        primitive.quarterLength = duration
+                finalDuration = 1.0
+            #add dot duration
+            if (hasDot):
+                finalDuration += finalDuration / 2
+        primitive.quarterLength = finalDuration
         stream.append(primitive)
     semantics.close()
 
     return stream
     
-
-
 #get semantic data
-convert("../converter/sheets/tt.png")
+convert("../converter/sheets/1.png")
 stream = translate()
 
 #saves music21 stream as midi file
