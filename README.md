@@ -15,10 +15,13 @@ We devised an algorithm that utilizes optical music recognition to read sheet mu
 
 ## <b>Model Testing</b>
 <b>Using a data sample from the PrIMuS dataset the model yielded 97% accuracy. Let's look at a comparison between the actual and predicted assignments.</b>
+
 ![image](https://user-images.githubusercontent.com/37620953/117707732-e7fc0580-b19c-11eb-8e2e-0aa0bbeb0ca1.png)
 
 <sub><sup>Predicted: ['clef-G2', 'keySignature-DbM', 'timeSignature-4/4', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'barline', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'barline', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'barline', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-Db5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-G5_eighth', 'note-F5_eighth', 'barline']</sub></sup>
-</sub><sup>Actual:    ['clef-G2', 'keySignature-DbM', 'timeSignature-4/4', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'barline', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'barline', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'barline', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-Db5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Gb5_eighth', 'note-F5_eighth', 'barline']</sub></sup>
+
+<sub><sup>Actual:    ['clef-G2', 'keySignature-DbM', 'timeSignature-4/4', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'barline', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'barline', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'barline', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Eb5_eighth', 'note-Db5_eighth', 'note-Eb5_eighth', 'note-F5_eighth', 'note-Gb5_eighth', 'note-F5_eighth', 'barline']</sub></sup>
+
 <b>Accuracy: 38/39,  97.43589743589743%</b>
 
 
