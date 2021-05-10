@@ -29,10 +29,10 @@ def convert(file):
     command = "python ctc_predict.py -image " + file + " -model Models/semantic_model.meta -vocabulary Data/vocabulary_semantic.txt"
     os.system(command)
 
+#translate semantic data into music21 streams
 def translate():  
     semantics = open(dir_path + "/semantics/semantics.txt", "r")
     #load created semantic text file into array
-    stream = m.stream.Stream()
     semArray = []
     for l in semantics:
         sem = l.rstrip()
@@ -46,7 +46,9 @@ def translate():
             match = re.search("_", sem)
             _pos = match.span()[0]
             note = match.string[0:_pos]
-            duration = match.string[_pos:]
+            #turn b into - to match music21 notation
+            note = re.sub("b", "-", note)
+            duration = match.string[_pos + 1:]
             #Insert to semArray
             semArray.append([note, duration])
         #REST
@@ -58,31 +60,45 @@ def translate():
                 #Get duration and insert to semArray
                 semArray.append(["rest", sem])
     #semantic array has format [[note, duration], [note, duration]] where note = rest if rest
-    #for p in semArray:
-
-
-
-
-
-
+    stream = m.stream.Stream()
+    for p in semArray:
+        print("Attempting to stream using: " + p[0] + " and " + p[1])
+        #Set note/rest 
+        if (p[0] == "rest"):
+            primitive = m.note.Rest()
+        else:
+            primitive = m.note.Note(p[0])
+        #Define duration
+        duration = p[1]
+        if (p[1] in ["whole", "half", "quarter", "eighth", "sixteenth"]):
+            if (duration == "whole"):
+                duration = 4.0
+            elif (duration == "half"):
+                duration = 2.0
+            elif (duration == "quarter"):
+                duration = 1.0
+            elif (duration == "eighth"):
+                duration = 0.5
+            elif (duration == "sixteenth"):
+                duration = 0.25
+            else:
+                print("Duration not supported")
+                duration = 1.0
+        primitive.quarterLength = duration
+        stream.append(primitive)
     semantics.close()
-
 
     return stream
     
 
+
 #get semantic data
-convert("../converter/sheets/sw.png")
+convert("../converter/sheets/tt.png")
 stream = translate()
 
-#translate semantic data into music21 streams
-#stream = m.stream.Stream()
-
-
-
 #saves music21 stream as midi file
-#stream.write('midi', fp=MIDI_SAVE_PATH + MIDI_SAVE_NAME)
+stream.write('midi', fp=MIDI_SAVE_PATH + MIDI_SAVE_NAME)
 
 #play saved midifile
-#play_midi(MIDI_SAVE_PATH + MIDI_SAVE_NAME)
+play_midi(MIDI_SAVE_PATH + MIDI_SAVE_NAME)
 
