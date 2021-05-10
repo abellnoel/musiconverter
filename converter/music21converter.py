@@ -106,7 +106,7 @@ def translate():
     return stream
     
 #get semantic data
-convert("../converter/sheets/1.png")
+convert("../converter/sheets/tt.png")
 stream = translate()
 
 #saves music21 stream as midi file
