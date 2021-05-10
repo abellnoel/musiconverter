@@ -24,6 +24,8 @@ We devised an algorithm that utilizes optical music recognition to read sheet mu
 
 <b>Accuracy: 38/39,  97.43589743589743%</b>
 
+## <b>Usage</b>
+<b>To use the model, navigate to the converter folder and open the music21converter.py file. Then, upload your sheet music image to the sheets folder within the converter folder. Finally, scroll to the bottom of music21converter.py to line 109 and change the target sheet location to the desired sheet and run the script. Once the script is run, two files are created: a text file containing the semantics created from the sheet music and a midi file (conversion.midi) that contains the MIDI data created. The MIDI should automatically play after translation using pygame, but can also be played again through other players such as VLC Media Player.</b>
 
 ## <b>Improvement</b>
 
