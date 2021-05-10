@@ -65,9 +65,12 @@ for w in str_predictions[0]:
     print (int2word[w]),
     print ('\t'),
 
-result = open(r"/content/drive/My Drive/CVGroupProject/Testing/results.txt","w")
+import os.path
+save_path = '../converter/semantics'
+completeName = os.path.join(save_path, "semantics.txt")         
+file1 = open(completeName, "w")
 for w in str_predictions[0]:
-    result.write(int2word[w] + " ")
-result.close()
+    file1.write(int2word[w] + "\n")
+file1.close()
+file1.close()
 print("Results written to file results.txt")
-
